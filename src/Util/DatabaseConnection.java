@@ -9,26 +9,36 @@ import java.util.Properties;
 public class DatabaseConnection {
     private static Properties properties = new Properties();
 
-    public static Connection getConnection(){
-        Connection conn = null;
-
-        try {
-            //properties.load(new FileInputStream("/Users/foureverhh/AWS_Logging/resources/db.properties"));
-            properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("db.properties"));
-            String driver = properties.getProperty("mysqlDriver");
-            System.out.println(driver);
-            String dbname = properties.getProperty("name");
-            String user = properties.getProperty("user");
-            String password = properties.getProperty("password");
-            String host = properties.getProperty("host");
-            String url = "jdbc:mysql://"+host+":3306/"+dbname+"?useSSL=false&serverTimezone=UTC";
-            Class.forName(driver);
-            conn = DriverManager.getConnection(url,user,password);
-        } catch (IOException | ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
-        return conn;
+    private static class DatabaseConnectionHolder{
+        private static DatabaseConnection connection = new DatabaseConnection();
     }
 
+    private DatabaseConnection(){
 
+    }
+
+    public static DatabaseConnection getInstance(){
+        return DatabaseConnectionHolder.connection;
+    }
+
+    public Connection getConnection(){
+        Connection conn = null;
+            try {
+                //properties.load(new FileInputStream("/Users/foureverhh/AWS_Logging/resources/db.properties"));
+                properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("db.properties"));
+                String driver = properties.getProperty("mysqlDriver");
+                System.out.println(driver);
+                String dbname = properties.getProperty("name");
+                String user = properties.getProperty("user");
+                String password = properties.getProperty("password");
+                String host = properties.getProperty("host");
+                String url = "jdbc:mysql://" + host + ":3306/" + dbname + "?useSSL=false&serverTimezone=UTC";
+                Class.forName(driver);
+                conn = DriverManager.getConnection(url, user, password);
+            } catch (IOException | ClassNotFoundException | SQLException e) {
+                e.printStackTrace();
+            }
+
+        return conn;
+    }
 }
