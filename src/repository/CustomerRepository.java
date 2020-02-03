@@ -17,4 +17,17 @@ public class CustomerRepository implements IRepository{
         List<Customer> customers =customerDaoIml.query(sql,new Object[]{});
         return customers.stream().collect(Collectors.toMap(Customer::getId,customer->customer));
     }
+
+    public boolean loginCheck(String loginInfo){
+        Map<Integer,Customer> allCustomers = getAll();
+        boolean succeedLogin = false;
+        for(Customer customer : allCustomers.values()){
+            if ((customer.getFirstName() + " " + customer.getLastName() + " " + customer.getPassword())
+                    .equals(loginInfo)){
+                succeedLogin = true;
+                break;
+            }
+        }
+        return succeedLogin;
+    }
 }

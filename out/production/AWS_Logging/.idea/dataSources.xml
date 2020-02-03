@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="aws" uuid="71ef2db8-a266-4dba-8ab3-d4404522a8b6">
+      <driver-ref>3f01ade7-7728-47ac-acae-bf520fad4854</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://banktest.c6qj2h28finx.eu-north-1.rds.amazonaws.com:3306/bank</jdbc-url>
+    </data-source>
+  </component>
+</project>

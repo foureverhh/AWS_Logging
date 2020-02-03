@@ -14,10 +14,6 @@ public class Customer extends Person {
         this.email = email;
     }
 
-    public Customer(String email) {
-        this.email = email;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -34,6 +30,6 @@ public class Customer extends Person {
 
     @Override
     public String toString() {
-        return getFirstName() + " " + getLastName() + " " + email;
+        return super.toString() + " " + email;
     }
 }

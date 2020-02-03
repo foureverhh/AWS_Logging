@@ -39,9 +39,12 @@ public class App {
         Object[] objects = new Object[]{1};
         List<Customer> customers = new CustomerDaoIml().query(sql,objects);
         System.out.println(customers);*/
-        Map<Integer,Customer> customerMap = new CustomerRepository().getAll();
+        CustomerRepository customerRepository = new CustomerRepository();
+        Map<Integer,Customer> customerMap = customerRepository.getAll();
         for(Map.Entry<Integer,Customer> entry : customerMap.entrySet()){
             System.out.println(entry.getKey() +" "+ entry.getValue());
         }
+        String info = "Kobe Brant 13";
+        System.out.println(customerRepository.loginCheck(info));
     }
 }
