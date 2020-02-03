@@ -1,11 +1,14 @@
 package App;
 
 import Util.DatabaseConnection;
+import model.Customer;
+import modelview.CustomerDaoIml;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class App {
     public static void main(String[] args) {
@@ -24,8 +27,15 @@ public class App {
                          rs.getString(4)
                  );
              }
+
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println("Customers:");
+        sql = "Select person.first_name, customers.email From customers join person ON person.id = customers.person_id where person_id = ?";
+        Object[] objects = new Object[]{1};
+        List<Customer> customers = new CustomerDaoIml().query(sql,objects);
+        System.out.println(customers);
     }
 }
