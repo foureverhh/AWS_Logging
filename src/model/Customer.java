@@ -9,6 +9,15 @@ public class Customer extends Person {
         return email;
     }
 
+    public Customer(int id, String firstName, String lastName, String security, String password, String email) {
+        super(id, firstName, lastName, security, password);
+        this.email = email;
+    }
+
+    public Customer(String email) {
+        this.email = email;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -12,6 +12,14 @@ public class Person {
     public Person() {
     }
 
+    public Person(int id, String firstName, String lastName, String security, String password) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.security = security;
+        this.password = password;
+    }
+
     public int getId() {
         return id;
     }
@@ -47,5 +55,11 @@ public class Person {
     @Override
     public int hashCode() {
         return Objects.hash(id, firstName, lastName, security, password);
+    }
+
+    @Override
+    public String toString() {
+        return  id + " " + firstName + " " + lastName + " " + security +
+                " " + password;
     }
 }

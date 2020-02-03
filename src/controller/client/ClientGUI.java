@@ -1,4 +1,4 @@
-package client;
+package controller.client;
 
 import javax.swing.*;
 

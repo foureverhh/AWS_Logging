@@ -41,15 +41,17 @@ public class DatabaseConnection {
         return conn;
     }
 
-    public List query(String sql,Object[] objects){
-        List queryResult = new ArrayList();
+    public ResultSet executesSQL(String sql, Object[] objects){
+        //List queryResult = new ArrayList();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement ps = conn.prepareStatement(sql);
+            ps = conn.prepareStatement(sql);
             for (int i = 0; i < objects.length; i++) {
                 ps.setObject(i+1,objects[i]);
             }
-            ResultSet rs = ps.executeQuery();
-            ResultSetMetaData md = rs.getMetaData();
+            rs = ps.executeQuery();
+ /*           ResultSetMetaData md = rs.getMetaData();
             int columnCount = md.getColumnCount();//get amount of rows
             while(rs.next()){
                 Map rowData = new HashMap();
@@ -58,12 +60,13 @@ public class DatabaseConnection {
                 }
                 queryResult.add(rowData);
             }
-
+*/
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return queryResult;
+        return rs;
     }
+
 
     public void close(Connection conn, PreparedStatement ps, ResultSet rs){
         if(rs != null){

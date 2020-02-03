@@ -1,5 +1,7 @@
 package repository;
 
-public interface IRepository {
+import java.util.Map;
 
+public interface IRepository <T>{
+    Map<Integer,T> getAll();
 }
