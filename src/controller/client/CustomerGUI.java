@@ -2,6 +2,6 @@ package controller.client;
 
 import javax.swing.*;
 
-public class ClientGUI extends JFrame {
+public class CustomerGUI extends JFrame {
 
 }
